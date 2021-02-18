@@ -1,0 +1,101 @@
+library(tidyverse)
+
+# select() function: select columns
+# you can select consecutive columns using ":" (try)
+# use the select () function to select any 3 variables
+# use the select () function to select the last 3 variables 
+# use the select() function to rename mpg to hello_world
+
+glimpse(mtcars)
+
+mtcars %>% select()
+select(mtcars)
+
+select(mtcars, mpg, drat, cy)
+select(mtcars, wt:carb)
+select(mtcars, hello_world = mpg) 
+select(mtcars, starts_with("d"))
+
+# filter rows
+# use logical operators
+# > less than
+# > greater than
+# <= less than or equal to
+# >= greater than or equal to
+# == equal to
+# | or 
+# & and 
+# %in% in 
+# filter rows in why mpg is less than 20 and greater than 14
+# filter rows in which cyl is equal to 6
+# filter rows in which mph is greater than 20 or disp is less than 200
+
+filter(mtcars, mpg < 20 & mpg > 14) 
+filter(mtcars, cyl == 6)
+filter(mtcars, mpg > 20 | disp < 200)
+
+# mutate
+# use mutate when you want to add columns to a data frame
+# in the mtcars data set, select the mpg column and then...
+# create a new column called mpg_x2 that doubles every value in the data frame
+# create a new column called mpg_C that centers the mpg data by subtracting...
+# the mean value of mph from every value in the data frame 
+# create a new column called value that applies the label good to cars that...
+# get over 18 mp and the label bad to cars that get 18 mpg or less
+
+mean(mtcars$mpg)
+
+mtcars %>%
+  select(., mpg) %>%
+  mutate(., mpg_x2 = mpg * 2)
+
+mtcars %>%
+  select(., mpg) %>%
+  mutate(., mpg_c = mpg - mean(mpg))
+
+mtcars %>%
+  select(., mpg) %>%
+  mutate(., value = if else(mpg <= 18, "bad", ) #not finished
+         
+# summarize to summarize a dataframe
+# calculate the mean value of mpg in the dataset mtcars
+# calculate the mean value of mph as a function of cyl
+# calculate the mean, standard deviation, min, and max of ...
+# mpg as a function of cyl
+
+mtcars %>%
+  summarize(., mean_mpg = mean(mpg))
+
+mtcars %>%
+  group_by(., cylc) %>% 
+  summarize(., mean_mpg = mean(mpg))
+
+mtcars %>%
+  group_by(., cyl)%>%
+  summarize(., mean_mpg = mean(mpg)),
+sd_mpg = sd(mpg),
+min_mpg = min(mpg), 
+max_mpg = max(mpg)) %>%
+  knitr::kable()
+
+
+
+
+
+# tidyr
+# How many columns are there? 4
+# how many variables are there? What are they? 
+# how many observations are there per row? 2
+# a tidy data set should have one observation per row and...
+# one variable per column
+library(tidyverse)
+library(untidydata)
+
+pre_post %>%
+  separate(., col = spec, into = c("group", "cond"), sep ="_")
+
+
+
+
+
+
